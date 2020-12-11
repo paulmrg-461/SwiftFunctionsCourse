@@ -20,32 +20,26 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-func printAndCount(string: String) -> Int {
-    print(string)
-    return string.count
+func someFunction(f1 firstParamName: Int, f2 secondParamName: Int = 6) {
+    print(firstParamName + secondParamName)
 }
 
-let count = printAndCount(string: "Vitor Tolazo")
-//print(count)
+//someFunction(f1: 5, f2: 1)
 
-func minMax(array: [Int]) -> (min: Int, max: Int)? {
-    if array.isEmpty {
-        return nil
-    }
-    var currentMin = array[0]
-    var currentMax = array[0]
-    
-    for value in array[1 ..< array.count] {
-        if value < currentMin {
-            currentMin = value
-        } else if value > currentMax {
-            currentMax = value
-        }
-    }
-    return (currentMin, currentMax)
+func greeting(_ person: String, from hometown: String) -> String{
+    return "Hola \(person) un placer que nos visites desde \(hometown)."
 }
 
-let bounds = minMax(array: [-5,7,5,8,3,0,-10])
-//print("Los valores se encuentran entre \(bounds!.min) y \(bounds!.max)")
+//print(greeting("Paul Realpe", from: "Colombia"))
+
+func mean(_ numbers: Double... )  -> Double{
+    var total : Double = 0
+    for number in numbers {
+        total += number
+    }
+    return total / Double(numbers.count)
+}
+
+//print(mean(1,2,3,4,5,6,7))
 
 
