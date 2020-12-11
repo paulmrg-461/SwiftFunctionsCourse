@@ -20,26 +20,22 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-func someFunction(f1 firstParamName: Int, f2 secondParamName: Int = 6) {
-    print(firstParamName + secondParamName)
+var x = 5
+func addOne(number: Int) {
+    var number2 = number
+    number2 += 1
+    print("El numero ahora vale \(number2)")
+}
+//addOne(number: x)
+
+func swapTwoInts(_ a: inout Int, _ b: inout Int) -> (a: Int, b: Int) {
+    let tempA = a
+    a = b
+    b = tempA
+    return (a,b)
 }
 
-//someFunction(f1: 5, f2: 1)
+var someInt = 3
+var otherInt = 7
 
-func greeting(_ person: String, from hometown: String) -> String{
-    return "Hola \(person) un placer que nos visites desde \(hometown)."
-}
-
-//print(greeting("Paul Realpe", from: "Colombia"))
-
-func mean(_ numbers: Double... )  -> Double{
-    var total : Double = 0
-    for number in numbers {
-        total += number
-    }
-    return total / Double(numbers.count)
-}
-
-//print(mean(1,2,3,4,5,6,7))
-
-
+//print(swapTwoInts(&someInt, &otherInt))
