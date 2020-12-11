@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
+        Text(greeting(person: "Paul Realpe"))
             .padding()
     }
 }
@@ -19,3 +19,8 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+func greeting(person: String) -> String {
+    let greet = "Hola, \(person)!"
+    return greet
+}
+
