@@ -20,23 +20,16 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-let negativeNumbers = [-9, 34 , -23, -2127 ,46, -6]
-
-let negativeNumbersStrings = negativeNumbers.map{ (number) -> String in
-    
-    var number = number
-    var output = ""
-    let minus = "menos"
-    let negative = number
-    
-    number = number < 0 ? number * -1 : number
-    
-    repeat{
-        output = digitNames[number%10]! + output
-        number /= 10
-    }while number > 0
-    output = negative < 0 ? minus + output : output
-    return output
+func makeIncremeter(forIncrement amount: Int) -> () -> Int {
+    var runningTotal = 0
+    func incrementer() -> Int {
+        runningTotal += amount
+        return runningTotal
+    }
+    return incrementer
 }
 
-print(negativeNumbersStrings)
+let incrementByTen = makeIncremeter(forIncrement: 10)
+print(incrementByTen())
+print(incrementByTen())
+print(incrementByTen())
