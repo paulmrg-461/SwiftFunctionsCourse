@@ -20,18 +20,30 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-enum Barcode {
-    case upc(Int, Int, Int, Int)
-    case qrCode(String)
+enum Planet: Int {
+    case mercury = 1, venus, earth, mars, jupiter, saturn, uranus, neptune
+}
+let earthOrder = Planet.earth.rawValue
+
+let possiblePlanet = Planet(rawValue: 5)
+let planetPosition = -6
+if let anyPlanet = Planet(rawValue: planetPosition){
+    switch anyPlanet{
+    case .earth:
+        print("La tierra es segura")
+    default:
+        print("No es posible ir a este planeta")
+    }
+}else{
+    print("El planeta indicado no existe.")
 }
 
-var productBarcode = Barcode.upc(8, 85909, 51226, 3)
-productBarcode = .qrCode("PaulRealpe")
 
-switch productBarcode {
-case let .upc(numberSystem, manufacturer, product, check):
-    print("UPC: \(numberSystem), \(manufacturer), \(product), \(check)")
-case let .qrCode(qrCode):
-    print("QR Code: \(qrCode)")
+enum ASCIIControlCharacter: Character{
+    case tab = "\t"
+    case lineFeed = "\n"
+    case carriageReturn = "\r"
 }
+
+
 
