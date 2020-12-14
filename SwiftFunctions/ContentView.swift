@@ -20,26 +20,32 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-let names = ["Paul", "Daniel", "Deiby", "Diego", "Rafael", "Aldivar", "Stiven", "John"]
-
-func backward(_ s1: String, _ s2: String) -> Bool {
-    return s1 > s2
+func someFunctionThatTakesAClosure(closure: () -> Void) {
+    //Aqui iria el cuerpo de la funcion
 }
 
-print(backward("Paul", "Rafael"))
+someFunctionThatTakesAClosure(closure: {
+    // Aqui iria el cuerpo del closure
+})
 
-var reversedNames = names.sorted(by: backward)
-print(reversedNames)
-/*
- {
- (params) -> return type in
- // Closure code
- }
- */
-//Closure function
-var orderNamesByReverse = names.sorted { (s1: String, s2: String) -> Bool in
-    return s1 > s2
+someFunctionThatTakesAClosure {
+    // Anadir el closure aqui
 }
-orderNamesByReverse = names.sorted(by: { $0 > $1 })
-orderNamesByReverse = names.sorted(by: < )
-print(orderNamesByReverse)
+
+reversedNames = names.sorted {$0>$1}
+
+let digitNames = [0: "Cero", 1: "Uno", 2: "Dos", 3: "Tres", 4: "Cuatro", 5: "Cinco", 6: "Seis", 7: "Siete", 8: "Ocho", 9: "Nueve"]
+
+let numbers = [16, 58, 510, 2127]
+
+let numberStrings = numbers.map { (number) -> String in
+    var number = number
+    var output = ""
+    repeat {
+        output = digitNames[number%10]! + output
+        number /= 10
+    } while number > 0
+    return output
+}
+
+print(numberStrings)
