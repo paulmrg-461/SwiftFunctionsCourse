@@ -20,22 +20,26 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+let names = ["Paul", "Daniel", "Deiby", "Diego", "Rafael", "Aldivar", "Stiven", "John"]
 
-//Nested functions
-func chooseStepFunction(backward: Bool) -> (Int) -> Int {
-func stepForward(_ input: Int) -> Int {
-    return input + 1
-}
-func stepBackward(_ input: Int) -> Int {
-    return input - 1
-}
-return backward ? stepBackward : stepForward
+func backward(_ s1: String, _ s2: String) -> Bool {
+    return s1 > s2
 }
 
-var value = -7
-let moveNearerZero = chooseStepFunction(backward: value > 0)
-while value != 0 {
-print("\(value)...")
-value = moveNearerZero(value)
+print(backward("Paul", "Rafael"))
+
+var reversedNames = names.sorted(by: backward)
+print(reversedNames)
+/*
+ {
+ (params) -> return type in
+ // Closure code
+ }
+ */
+//Closure function
+var orderNamesByReverse = names.sorted { (s1: String, s2: String) -> Bool in
+    return s1 > s2
 }
-print("Cero!!!!")
+orderNamesByReverse = names.sorted(by: { $0 > $1 })
+orderNamesByReverse = names.sorted(by: < )
+print(orderNamesByReverse)
