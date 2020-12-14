@@ -19,45 +19,19 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-enum CompassPoint {
-    case north
-    case south
-    case east
-    case west
+
+enum Barcode {
+    case upc(Int, Int, Int, Int)
+    case qrCode(String)
 }
 
-enum Planet {
-    case mercury, venus, earth, mars, jupiter, saturn, uranus, neptune
+var productBarcode = Barcode.upc(8, 85909, 51226, 3)
+productBarcode = .qrCode("PaulRealpe")
+
+switch productBarcode {
+case let .upc(numberSystem, manufacturer, product, check):
+    print("UPC: \(numberSystem), \(manufacturer), \(product), \(check)")
+case let .qrCode(qrCode):
+    print("QR Code: \(qrCode)")
 }
 
-var directionToGo = CompassPoint.east
-directionToGo = .north
-
-switch directionToGo {
-case .north:
-    print("Hay que ir al norte.")
-case .south:
-    print("Hay pinguinos en el sur")
-case .east:
-    print("Mordor se extiende hacia las tierras del este")
-case .west:
-    print("Cuidado con los vaqueros!")
-}
-
-let somePlanet = Planet.earth
-switch somePlanet {
-case .earth:
-    print("La Tierra es segura!")
-default:
-    print("No es seguro ir a ese planeta!")
-}
-
-enum Beverage: CaseIterable {
-    case coffee, beer, tea, juice, lemonade, redbull
-}
-
-let numberOfChoices = Beverage.allCases.count
-print(numberOfChoices)
-for beverage in Beverage.allCases{
-    print(beverage)
-}
