@@ -19,36 +19,45 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
-
-var completionHandlers: [() -> Void] = []
-
-func someFunctionWithEscapingClosure( completionHandler: @escaping () -> Void) {
-    completionHandlers.append(completionHandler)
+enum CompassPoint {
+    case north
+    case south
+    case east
+    case west
 }
 
-func someFunctionWithNonEscapingClosure(closure: () -> Void){
-    closure()
+enum Planet {
+    case mercury, venus, earth, mars, jupiter, saturn, uranus, neptune
 }
 
-class SomeClass{
-    var x = 10
-    func doSomething(){
-        someFunctionWithEscapingClosure {
-            self.x = 100
-        }
-        someFunctionWithNonEscapingClosure {
-            x = 200
-        }
-    }
+var directionToGo = CompassPoint.east
+directionToGo = .north
+
+switch directionToGo {
+case .north:
+    print("Hay que ir al norte.")
+case .south:
+    print("Hay pinguinos en el sur")
+case .east:
+    print("Mordor se extiende hacia las tierras del este")
+case .west:
+    print("Cuidado con los vaqueros!")
 }
 
-let instance = SomeClass()
-print(instance.x)
+let somePlanet = Planet.earth
+switch somePlanet {
+case .earth:
+    print("La Tierra es segura!")
+default:
+    print("No es seguro ir a ese planeta!")
+}
 
-instance.doSomething()
-print(instance.x)
+enum Beverage: CaseIterable {
+    case coffee, beer, tea, juice, lemonade, redbull
+}
 
-completionHandlers.count
-completionHandlers.first?()
-print(instance.x)
-
+let numberOfChoices = Beverage.allCases.count
+print(numberOfChoices)
+for beverage in Beverage.allCases{
+    print(beverage)
+}
