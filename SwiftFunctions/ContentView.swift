@@ -20,22 +20,26 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-var x = 5
-func addOne(number: Int) {
-    var number2 = number
-    number2 += 1
-    print("El numero ahora vale \(number2)")
-}
-//addOne(number: x)
+let names = ["Paul", "Daniel", "Deiby", "Diego", "Rafael", "Aldivar", "Stiven", "John"]
 
-func swapTwoInts(_ a: inout Int, _ b: inout Int) -> (a: Int, b: Int) {
-    let tempA = a
-    a = b
-    b = tempA
-    return (a,b)
+func backward(_ s1: String, _ s2: String) -> Bool {
+    return s1 > s2
 }
 
-var someInt = 3
-var otherInt = 7
-
-//print(swapTwoInts(&someInt, &otherInt))
+print(backward("Paul", "Rafael"))
+    
+var reversedNames = names.sorted(by: backward)
+print(reversedNames)
+/*
+ {
+ (params) -> return type in
+ // Closure code
+ }
+ */
+    //Closure function
+var orderNamesByReverse = names.sorted { (s1: String, s2: String) -> Bool in
+    return s1 > s2
+}
+orderNamesByReverse = names.sorted(by: { $0 > $1 })
+orderNamesByReverse = names.sorted(by: < )
+print(orderNamesByReverse)
