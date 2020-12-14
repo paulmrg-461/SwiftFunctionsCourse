@@ -20,16 +20,35 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-func makeIncremeter(forIncrement amount: Int) -> () -> Int {
-    var runningTotal = 0
-    func incrementer() -> Int {
-        runningTotal += amount
-        return runningTotal
-    }
-    return incrementer
+var completionHandlers: [() -> Void] = []
+
+func someFunctionWithEscapingClosure( completionHandler: @escaping () -> Void) {
+    completionHandlers.append(completionHandler)
 }
 
-let incrementByTen = makeIncremeter(forIncrement: 10)
-print(incrementByTen())
-print(incrementByTen())
-print(incrementByTen())
+func someFunctionWithNonEscapingClosure(closure: () -> Void){
+    closure()
+}
+
+class SomeClass{
+    var x = 10
+    func doSomething(){
+        someFunctionWithEscapingClosure {
+            self.x = 100
+        }
+        someFunctionWithNonEscapingClosure {
+            x = 200
+        }
+    }
+}
+
+let instance = SomeClass()
+print(instance.x)
+
+instance.doSomething()
+print(instance.x)
+
+completionHandlers.count
+completionHandlers.first?()
+print(instance.x)
+
