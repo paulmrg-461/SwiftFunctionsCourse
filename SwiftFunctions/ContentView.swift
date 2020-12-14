@@ -20,32 +20,23 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-func someFunctionThatTakesAClosure(closure: () -> Void) {
-    //Aqui iria el cuerpo de la funcion
-}
+let negativeNumbers = [-9, 34 , -23, -2127 ,46, -6]
 
-someFunctionThatTakesAClosure(closure: {
-    // Aqui iria el cuerpo del closure
-})
-
-someFunctionThatTakesAClosure {
-    // Anadir el closure aqui
-}
-
-reversedNames = names.sorted {$0>$1}
-
-let digitNames = [0: "Cero", 1: "Uno", 2: "Dos", 3: "Tres", 4: "Cuatro", 5: "Cinco", 6: "Seis", 7: "Siete", 8: "Ocho", 9: "Nueve"]
-
-let numbers = [16, 58, 510, 2127]
-
-let numberStrings = numbers.map { (number) -> String in
+let negativeNumbersStrings = negativeNumbers.map{ (number) -> String in
+    
     var number = number
     var output = ""
-    repeat {
+    let minus = "menos"
+    let negative = number
+    
+    number = number < 0 ? number * -1 : number
+    
+    repeat{
         output = digitNames[number%10]! + output
         number /= 10
-    } while number > 0
+    }while number > 0
+    output = negative < 0 ? minus + output : output
     return output
 }
 
-print(numberStrings)
+print(negativeNumbersStrings)
